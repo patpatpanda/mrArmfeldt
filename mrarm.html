@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>C# Snabbguide – Hjälpbibliotek & Syntax</title>
+  <meta name="description" content="En kompakt, snygg och sökbar C#-snabbguide med vanliga hjälpbibliotek och syntaxexempel." />
+  <!-- Bootstrap för layout -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- highlight.js för kodhighlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <style>
+    body { background: #0f1115; color: #e6e6e6; }
+    .navbar-brand { font-weight: 700; letter-spacing: .3px; }
+    .searchbar { position: sticky; top: 0; z-index: 1030; background: rgba(15,17,21,.9); backdrop-filter: blur(6px); }
+    .card { background: #161a22; border: 1px solid #262c38; }
+    .card .card-header { background: transparent; border-bottom: 1px solid #262c38; }
+    pre { margin: 0; }
+    .copy-btn { position: absolute; top: .75rem; right: .75rem; }
+    .section-title { scroll-margin-top: 100px; }
+    .tag { font-size: .8rem; background:#1d2330; border:1px solid #2b3547; padding:.2rem .5rem; border-radius:999px; }
+    .muted { color:#aeb6c2; }
+    .hljs { background: #0e0f13; }
+    footer { color:#8f9ab0; }
+    .kbd {border:1px solid #495469; border-bottom-width:2px; border-radius:6px; padding:0 .35rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-transparent border-bottom border-secondary-subtle">
+    <div class="container py-3">
+      <a class="navbar-brand" href="#">C# Snabbguide</a>
+      <div class="d-none d-md-flex gap-3">
+        <a class="nav-link text-light" href="#grunder">Grunder</a>
+        <a class="nav-link text-light" href="#strangar">Strängar</a>
+        <a class="nav-link text-light" href="#listor">Listor & Arrayer</a>
+        <a class="nav-link text-light" href="#linq">LINQ</a>
+        <a class="nav-link text-light" href="#random">Slump (Random)</a>
+        <a class="nav-link text-light" href="#filio">Fil I/O</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="searchbar border-bottom border-secondary-subtle">
+    <div class="container py-3">
+      <div class="input-group input-group-lg">
+        <span class="input-group-text">🔎</span>
+        <input id="search" type="search" class="form-control" placeholder="Sök i guiden (t.ex. 'split', 'regex', 'foreach')" />
+      </div>
+      <div class="form-text text-light mt-2">Tips: tryck <span class="kbd">/</span> för att hoppa till sök.</div>
+    </div>
+  </section>
+
+  <main class="container my-4">
+    <!-- GRUNDER -->
+    <h2 id="grunder" class="section-title mb-3">Grunder <span class="tag">syntax</span></h2>
+    <div class="row g-3 section" data-text="grunder variabler datatyper if else switch loop for foreach while metod klass egenskaper properties try catch exception">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Variabler & Typer</strong>
+            <span class="muted">int, double, bool, string</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code1">Kopiera</button>
+            <pre><code id="code1" class="language-csharp">int heltal = 42;
+double pi = 3.14;
+bool klar = true;
+string namn = "Ada";
+var lista = new List&lt;int&gt; {1,2,3};
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Villkor & Loopar</strong>
+            <span class="muted">if/else, switch, for, foreach, while</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code2">Kopiera</button>
+            <pre><code id="code2" class="language-csharp">if (x &gt; 10) Console.WriteLine("stor");
+else Console.WriteLine("liten");
+
+switch (dag)
+{
+  case 1: Console.WriteLine("Mån"); break;
+  case 2: Console.WriteLine("Tis"); break;
+  default: Console.WriteLine("?"); break;
+}
+
+for (int i = 0; i &lt; 5; i++) Console.WriteLine(i);
+foreach (var s in samling) Console.WriteLine(s);
+while (villkor) { /* ... */ }
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Metoder & Klasser</strong>
+            <span class="muted">methods, classes, properties</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code3">Kopiera</button>
+            <pre><code id="code3" class="language-csharp">class Person
+{
+  public string Namn { get; set; }
+  public int Ålder { get; init; }
+  public void Hälsa() =&gt; Console.WriteLine($"Hej {Namn}!");
+}
+
+static int Add(int a, int b) =&gt; a + b;
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <strong>Felhantering</strong>
+            <span class="muted">try/catch/finally, throw</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code4">Kopiera</button>
+            <pre><code id="code4" class="language-csharp">try
+{
+  var n = int.Parse("hej");
+}
+catch (FormatException ex)
+{
+  Console.WriteLine(ex.Message);
+}
+finally
+{
+  Console.WriteLine("Alltid!");
+}
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRÄNGAR -->
+    <h2 id="strangar" class="section-title mt-5 mb-3">Strängar <span class="tag">text</span></h2>
+    <div class="row g-3 section" data-text="string sträng split join substring replace indexof contains trim interpolering regex jämföra tolower toupper längd length">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Vanliga operationer</strong>
+            <span class="muted">Split/Join/Replace</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code5">Kopiera</button>
+            <pre><code id="code5" class="language-csharp">string s = "Jon-Henrik Fjällgren är duktig på att joddla";
+var ord = s.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+Console.WriteLine(ord.Length); // antal ord
+Console.WriteLine(string.Join(", ", ord));
+Console.WriteLine(s.Replace("joddla", "sjunga"));
+Console.WriteLine(s.ToLower());
+Console.WriteLine(s.Contains("Fjäll"));
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Plocka tecken & Delsträng</strong>
+            <span class="muted">index, range</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code6">Kopiera</button>
+            <pre><code id="code6" class="language-csharp">Console.WriteLine(s[^1]);         // sista tecknet (C# 8+)
+Console.WriteLine(s.Substring(0, 10));
+Console.WriteLine(s.IndexOf("duktig"));
+var span = s.AsSpan(4, 6);        // effektiv delvisning
+Console.WriteLine(span.ToString());
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-12">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Regex-snabbis</strong>
+            <span class="muted">System.Text.RegularExpressions</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code7">Kopiera</button>
+            <pre><code id="code7" class="language-csharp">using System.Text.RegularExpressions;
+string text = "Mail: ada@example.com & bob@test.se";
+var match = Regex.Matches(text, @"[\w.]+@[\w.]+\.[a-z]{2,}");
+foreach (Match m in match) Console.WriteLine(m.Value);
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTOR & ARRAYER -->
+    <h2 id="listor" class="section-title mt-5 mb-3">Listor & Arrayer <span class="tag">samlingar</span></h2>
+    <div class="row g-3 section" data-text="list array dictionary hashset queue stack sort filtrera map groupby">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>List&lt;T&gt; & Array</strong>
+            <span class="muted">skapa, lägga till, sortera</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code8">Kopiera</button>
+            <pre><code id="code8" class="language-csharp">var lista = new List&lt;int&gt; { 5, 2, 9, 1 };
+lista.Add(7);
+lista.Sort();
+int[] arr = lista.ToArray();
+Array.Reverse(arr);
+Console.WriteLine(string.Join(",", arr));
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Dictionary & HashSet</strong>
+            <span class="muted">nyckel/värde & unika element</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code9">Kopiera</button>
+            <pre><code id="code9" class="language-csharp">var antal = new Dictionary&lt;string,int&gt;();
+antal["äpple"] = 3;
+ante l["banan"] = 2; // eller antal.Add("banan", 2)
+Console.WriteLine(antal.GetValueOrDefault("päron", 0));
+
+var unika = new HashSet&lt;int&gt; { 1,2,2,3 };
+Console.WriteLine(unika.Contains(2)); // true
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINQ -->
+    <h2 id="linq" class="section-title mt-5 mb-3">LINQ <span class="tag">frågor på samlingar</span></h2>
+    <div class="row g-3 section" data-text="linq where select orderby groupby aggregate any all first sum average distinct take skip">
+      <div class="col-12">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Vanligaste operationerna</strong>
+            <span class="muted">Where/Select/GroupBy/OrderBy</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code10">Kopiera</button>
+            <pre><code id="code10" class="language-csharp">using System.Linq;
+var personer = new[] {
+  new { Namn = "Ada", Ålder = 30 },
+  new { Namn = "Bob", Ålder = 17 },
+  new { Namn = "Cia", Ålder = 25 }
+};
+var vuxnaNamn = personer
+  .Where(p =&gt; p.Ålder &gt;= 18)
+  .OrderBy(p =&gt; p.Namn)
+  .Select(p =&gt; p.Namn)
+  .ToList();
+Console.WriteLine(string.Join(", ", vuxnaNamn));
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RANDOM -->
+    <h2 id="random" class="section-title mt-5 mb-3">Slump (Random) <span class="tag">Random.Shared</span></h2>
+    <div class="row g-3 section" data-text="random next nextdouble nextbytes tärning fördelning seed trådsäker shared">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Heltal & Flyttal</strong>
+            <span class="muted">Next, NextDouble</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code11">Kopiera</button>
+            <pre><code id="code11" class="language-csharp">var r = Random.Shared; // .NET 6+
+int tärning = r.Next(1, 7);      // 1..6
+double p = r.NextDouble();       // 0.0..1.0
+byte[] buf = new byte[16];
+r.NextBytes(buf);
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Seed & Reproducerbarhet</strong>
+            <span class="muted">determinism</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code12">Kopiera</button>
+            <pre><code id="code12" class="language-csharp">var r1 = new Random(1234);
+Console.WriteLine(r1.Next()); // samma sekvens varje körning
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DATUM & TID -->
+    <h2 id="datum" class="section-title mt-5 mb-3">Datum & Tid <span class="tag">DateTime</span></h2>
+    <div class="row g-3 section" data-text="datetime datetimeoffset timespan parse format now utc add days timespan stopur krona">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>DateTime/Offset</strong>
+            <span class="muted">Now, UtcNow, Format</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code13">Kopiera</button>
+            <pre><code id="code13" class="language-csharp">DateTime nu = DateTime.Now;
+Console.WriteLine(nu.ToString("yyyy-MM-dd HH:mm"));
+var offset = DateTimeOffset.UtcNow;
+Console.WriteLine(offset.ToLocalTime());
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>TimeSpan & Mätning</strong>
+            <span class="muted">tidsdifferens</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code14">Kopiera</button>
+            <pre><code id="code14" class="language-csharp">var start = DateTime.UtcNow;
+// ... gör något ...
+var diff = DateTime.UtcNow - start;
+Console.WriteLine(diff.TotalMilliseconds);
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIL I/O -->
+    <h2 id="filio" class="section-title mt-5 mb-3">Fil I/O <span class="tag">System.IO</span></h2>
+    <div class="row g-3 section" data-text="file readalltext writealltext appendalllines streamreader streamwriter path exists create directory">
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Läsa & Skriva</strong>
+            <span class="muted">File.*</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code15">Kopiera</button>
+            <pre><code id="code15" class="language-csharp">using System.IO;
+File.WriteAllText("data.txt", "Hej världen!");
+string innehåll = File.ReadAllText("data.txt");
+File.AppendAllLines("log.txt", new[]{ DateTime.Now.ToString() });
+</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Streams</strong>
+            <span class="muted">StreamReader/Writer</span>
+          </div>
+          <div class="card-body position-relative">
+            <button class="btn btn-sm btn-outline-light copy-btn" data-copy="code16">Kopiera</button>
+            <pre><code id="code16" class="language-csharp">using var sw = new StreamWriter("out.txt");
+sw.WriteLine("rad 1");
+using var sr = new StreamReader("out.txt");
+Console.WriteLine(sr.ReadToEnd());
+</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNDANTAG & DEBUG -->
+    <h2 id="debug" class="section-title mt-5 mb-3">Debug & Tips <span class="tag">verktyg</span></h2>
+    <div class="row g-3 section" data-text="debug assert unit test dotnet test loggning console writeline breakpoints">
+      <div class="col-12">
+        <div class="card h-100">
+          <div class="card-header d-flex justify-content-between">
+            <strong>Snabba tips</strong>
+            <span class="muted">felsökning</span>
+          </div>
+          <div class="card-body">
+            <ul class="mb-0">
+              <li>Använd <code>Console.WriteLine()</code> liberalt när du felsöker.</li>
+              <li>Gör metoder små och testbara; skriv gärna enkla enhetstester.</li>
+              <li>Var försiktig med nya <code>Random()</code> i en tight loop – återanvänd instans eller <code>Random.Shared</code>.</li>
+              <li>Kontrollera <code>null</code> och använd <code>?.</code> samt <code>??</code> för säkra accesser.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="container py-5 border-top border-secondary-subtle">
+    <p class="mb-1">© 2025 • C# Snabbguide • Byggd med Bootstrap & highlight.js</p>
+    <p class="mb-0">Helt statisk HTML – publicera var som helst (GitHub Pages, Netlify, skolserver, etc.).</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script>
+    // Sökfiltrering
+    const input = document.getElementById('search');
+    const sections = document.querySelectorAll('.section');
+    const index = Array.from(sections).map(sec => ({
+      el: sec,
+      text: (sec.getAttribute('data-text') + ' ' + sec.innerText).toLowerCase()
+    }));
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      index.forEach(({el, text}) => {
+        el.style.display = q && !text.includes(q) ? 'none' : '';
+      });
+    });
+
+    // Snabbt tangentbordsfokus på sök med '/'
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '/') {
+        e.preventDefault();
+        input.focus();
+      }
+    });
+
+    // Kopiera-knappar
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-copy');
+        const code = document.getElementById(id)?.innerText || '';
+        try {
+          await navigator.clipboard.writeText(code);
+          const old = btn.innerText;
+          btn.innerText = 'Kopierat!';
+          setTimeout(() => btn.innerText = old, 1200);
+        } catch {
+          alert('Kunde inte kopiera. Markera och kopiera manuellt.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
