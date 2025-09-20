@@ -1,0 +1,61 @@
+/* Grundläggande reset och färgtema */
+:root {
+  --bg: #fdfdfd;
+  --text: #1a1a1a;
+  --accent: #2563eb; /* blå accent */
+  --accent-light: #e0edff;
+  --border: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif; line-height: 1.6; background: var(--bg); color: var(--text); }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header { position: sticky; top: 0; background: var(--accent); color: #fff; padding: 1rem; z-index: 100; }
+header h1 { margin: 0; font-size: 1.8rem; }
+header p { margin-top: .5rem; font-size: .9rem; opacity: .9; }
+
+main { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 1rem; gap: 2rem; }
+
+/* Navigationsmeny */
+nav.toc {
+  flex: 1 1 220px;
+  background: var(--accent-light);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  max-height: fit-content;
+}
+nav.toc strong { display: block; margin-bottom: .5rem; font-size: 1.1rem; }
+nav.toc a { display: block; padding: .3rem 0; font-size: .95rem; color: var(--accent); }
+nav.toc a:hover { text-decoration: underline; }
+
+/* Sektioner */
+section { flex: 3 1 600px; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+section h2 { font-size: 1.4rem; margin-top: 0; }
+
+/* Kodblock */
+pre { background: #0b1020; color: #e6eaff; padding: 1rem; border-radius: 12px; overflow: auto; border: 1px solid #1e293b; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* Gridlayout */
+.grid { display: grid; gap: 1rem; }
+.grid.cols-2 { grid-template-columns: 1fr; }
+@media (min-width: 900px) {
+  .grid.cols-2 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Info-rutor */
+.tip { background: #ecfdf5; border-left: 4px solid #10b981; padding: .75rem 1rem; border-radius: 8px; }
+.warn { background: #fff7ed; border-left: 4px solid #f97316; padding: .75rem 1rem; border-radius: 8px; }
+
+/* Sidfot */
+footer { padding: 2rem 0; font-size: .9rem; color: #6b7280; text-align: center; border-top: 1px dashed var(--border); }
+
+/* Responsivitet för smala skärmar */
+@media (max-width: 700px) {
+  main { flex-direction: column; }
+  nav.toc { position: relative; width: 100%; }
+}
