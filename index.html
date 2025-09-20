@@ -21,7 +21,7 @@
     .tag { font-size: .8rem; background:#1d2330; border:1px solid #2b3547; padding:.2rem .5rem; border-radius:999px; }
     .muted { color:#aeb6c2; }
     .hljs { background: #0e0f13; }
-    footer { color:#8f9ab0; }
+    footer { color:#14121200; }
     .kbd {border:1px solid #495469; border-bottom-width:2px; border-radius:6px; padding:0 .35rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
   </style>
 </head>
@@ -401,7 +401,76 @@ Console.WriteLine(sr.ReadToEnd());
       </div>
     </div>
 
-  </main>
+<div class="card-body position-relative">
+<pre><code class="language-csharp">string[] ord = { "äpple", "banan", "citron" };
+foreach (string frukt in ord)
+{
+Console.WriteLine(frukt);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-6">
+<div class="card h-100">
+<div class="card-header"><strong>while-loop</strong></div>
+<div class="card-body position-relative">
+<pre><code class="language-csharp">int x = 0;
+while (x < 5)
+{
+Console.WriteLine(x);
+x++;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-6">
+<div class="card h-100">
+<div class="card-header"><strong>do-while-loop</strong></div>
+<div class="card-body position-relative">
+<pre><code class="language-csharp">int y = 0;
+do
+{
+Console.WriteLine(y);
+y++;
+} while (y < 5);
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<h2 id="maxmin" class="section-title mt-5 mb-3">Max och Min <span class="tag">Math / LINQ</span></h2>
+<div class="row g-3">
+<div class="col-12 col-lg-6">
+<div class="card h-100">
+<div class="card-header"><strong>Math.Max / Math.Min</strong></div>
+<div class="card-body position-relative">
+<pre><code class="language-csharp">int a = 10;
+int b = 20;
+int max = Math.Max(a, b); // 20
+int min = Math.Min(a, b); // 10
+Console.WriteLine($"Max: {max}, Min: {min}");
+</code></pre>
+</div>
+</div>
+</div>
+<div class="col-12 col-lg-6">
+<div class="card h-100">
+<div class="card-header"><strong>LINQ Max / Min</strong></div>
+<div class="card-body position-relative">
+<pre><code class="language-csharp">using System.Linq;
+int[] tal = { 3, 8, 2, 9, 5 };
+int störst = tal.Max(); // 9
+int minst = tal.Min(); // 2
+Console.WriteLine($"Störst: {störst}, Minst: {minst}");
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</main>
+ 
 
   <footer class="container py-5 border-top border-secondary-subtle">
     <p class="mb-1">© 2025 • C# Snabbguide • Byggd med Bootstrap & highlight.js</p>
