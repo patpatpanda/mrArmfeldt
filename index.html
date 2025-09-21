@@ -455,5 +455,121 @@ string innehåll = File.ReadAllText(filnamn);
 Console.WriteLine(innehåll);
 </code></pre>
 </section>
+
+
+<section>
+<h2>25. Filtrera jämna tal och summera dem (LINQ)</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] tal = { 1, 2, 3, 4, 5, 6 };
+
+// Plocka ut jämna tal
+int[] jämna = tal.Where(x =&gt; x % 2 == 0).ToArray();
+
+// Summera de jämna
+int summa = jämna.Sum();
+
+Console.WriteLine("Jämna tal: " + string.Join(", ", jämna));
+Console.WriteLine("Summan av de jämna: " + summa);
+</code></pre>
+</section>
+
+<section>
+<h2>26. Hämta namn som börjar på A och räkna dem</h2>
+<pre><code>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+List&lt;string&gt; namn = new List&lt;string&gt; { "Anna", "Anders", "Bertil", "Agneta", "Carina" };
+
+// Plocka ut namn som börjar med 'A'
+var aNamn = namn.Where(n =&gt; n.StartsWith("A")).ToList();
+
+// Räkna dem
+Console.WriteLine($"Antal namn som börjar på A: {aNamn.Count}");
+Console.WriteLine(string.Join(", ", aNamn));
+</code></pre>
+</section>
+
+<section>
+<h2>27. Hitta tal större än medelvärdet</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] tal = { 5, 10, 15, 20, 25 };
+
+double medel = tal.Average();
+int[] störreÄnMedel = tal.Where(x =&gt; x &gt; medel).ToArray();
+
+Console.WriteLine($"Medelvärde: {medel}");
+Console.WriteLine("Tal större än medel: " + string.Join(", ", störreÄnMedel));
+</code></pre>
+</section>
+
+<section>
+<h2>28. Ta ut de tre största talen</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] tal = { 4, 9, 1, 7, 3, 12 };
+
+int[] toppTre = tal.OrderByDescending(x =&gt; x)
+                   .Take(3)
+                   .ToArray();
+
+Console.WriteLine("De tre största talen: " + string.Join(", ", toppTre));
+</code></pre>
+</section>
+
+<section>
+<h2>29. Plocka ut ord längre än 4 bokstäver och gör dem versala</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+string[] ord = { "hej", "programmering", "sol", "fantastiskt", "bil" };
+
+string[] långaVersaler = ord
+    .Where(o =&gt; o.Length &gt; 4)   // ta ut ord längre än 4 tecken
+    .Select(o =&gt; o.ToUpper())   // gör versaler
+    .ToArray();
+
+Console.WriteLine(string.Join(", ", långaVersaler));
+</code></pre>
+</section>
+
+<section>
+<h2>30. Filtrera kunder med högt belopp och summera totalbeloppet</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+var kunder = new[]
+{
+    new { Namn = "Eva", Belopp = 1200 },
+    new { Namn = "Oskar", Belopp = 500 },
+    new { Namn = "Mia", Belopp = 2000 }
+};
+
+// Plocka ut kunder med belopp &gt; 1000
+var premiumKunder = kunder.Where(k =&gt; k.Belopp &gt; 1000);
+
+// Summera deras belopp
+int totalPremium = premiumKunder.Sum(k =&gt; k.Belopp);
+
+Console.WriteLine("Premiumkunder: " + string.Join(", ", premiumKunder.Select(k =&gt; k.Namn)));
+Console.WriteLine($"Totalbelopp: {totalPremium}");
+</code></pre>
+</section>
+
+
+
+
+
 </body>
 </html>
