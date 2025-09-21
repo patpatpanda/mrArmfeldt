@@ -38,6 +38,7 @@
 
 <h1>C# Övningsuppgifter</h1>
 
+<!-- ===== Tidigare exempel ===== -->
 <section>
 <h2>1. Skriv ut alla index och värden i en array</h2>
 <pre><code>
@@ -179,6 +180,169 @@ for (int i = 1; i &lt;= 100; i++)
     else if (i % 5 == 0) Console.WriteLine("Buzz");
     else Console.WriteLine(i);
 }
+</code></pre>
+</section>
+
+<!-- ===== Nya exempel ===== -->
+<section>
+<h2>9. Summera alla tal i en array</h2>
+<pre><code>
+int[] tal = { 3, 5, 7, 9 };
+int summa = 0;
+
+for (int i = 0; i &lt; tal.Length; i++)
+{
+    summa += tal[i];
+}
+
+Console.WriteLine($"Summan av alla tal är {summa}");
+</code></pre>
+</section>
+
+<section>
+<h2>10. Största och minsta värde i en array</h2>
+<pre><code>
+int[] tal = { 12, 4, 19, -3, 7 };
+
+int min = tal[0];
+int max = tal[0];
+
+for (int i = 1; i &lt; tal.Length; i++)
+{
+    if (tal[i] &lt; min) min = tal[i];
+    if (tal[i] &gt; max) max = tal[i];
+}
+
+Console.WriteLine($"Minsta: {min}, Största: {max}");
+</code></pre>
+</section>
+
+<section>
+<h2>11. Räkna förekomst av ett visst tal</h2>
+<pre><code>
+int[] tal = { 4, 2, 4, 6, 4 };
+int sökt = 4;
+int count = 0;
+
+for (int i = 0; i &lt; tal.Length; i++)
+{
+    if (tal[i] == sökt)
+        count++;
+}
+
+Console.WriteLine($"{sökt} förekommer {count} gånger.");
+</code></pre>
+</section>
+
+<section>
+<h2>12. Multiplikationstabell (1–10)</h2>
+<pre><code>
+for (int i = 1; i &lt;= 10; i++)
+{
+    for (int j = 1; j &lt;= 10; j++)
+    {
+        Console.Write($"{i * j}\t");
+    }
+    Console.WriteLine();
+}
+</code></pre>
+</section>
+
+<section>
+<h2>13. Räkna ut fakultet (n!)</h2>
+<pre><code>
+int n = 5;
+int resultat = 1;
+
+for (int i = 1; i &lt;= n; i++)
+{
+    resultat *= i;
+}
+
+Console.WriteLine($"{n}! = {resultat}");
+</code></pre>
+</section>
+
+<section>
+<h2>14. Hitta primtal upp till 100</h2>
+<pre><code>
+for (int i = 2; i &lt;= 100; i++)
+{
+    bool ärPrimtal = true;
+
+    for (int j = 2; j &lt;= Math.Sqrt(i); j++)
+    {
+        if (i % j == 0)
+        {
+            ärPrimtal = false;
+            break;
+        }
+    }
+
+    if (ärPrimtal)
+        Console.Write($"{i} ");
+}
+</code></pre>
+</section>
+
+<section>
+<h2>15. Byt plats på första och sista elementet i en array</h2>
+<pre><code>
+int[] tal = { 1, 2, 3, 4, 5 };
+
+int temp = tal[0];
+tal[0] = tal[tal.Length - 1];
+tal[tal.Length - 1] = temp;
+
+Console.WriteLine(string.Join(", ", tal));
+</code></pre>
+</section>
+
+<section>
+<h2>16. Bubble Sort (sortera array)</h2>
+<pre><code>
+int[] tal = { 5, 1, 4, 2, 8 };
+
+for (int i = 0; i &lt; tal.Length - 1; i++)
+{
+    for (int j = 0; j &lt; tal.Length - i - 1; j++)
+    {
+        if (tal[j] &gt; tal[j + 1])
+        {
+            int temp = tal[j];
+            tal[j] = tal[j + 1];
+            tal[j + 1] = temp;
+        }
+    }
+}
+
+Console.WriteLine(string.Join(", ", tal));
+</code></pre>
+</section>
+
+<section>
+<h2>17. Räkna ord i en mening</h2>
+<pre><code>
+string mening = "Detta är en enkel mening";
+int antalOrd = mening.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length;
+
+Console.WriteLine($"Antal ord: {antalOrd}");
+</code></pre>
+</section>
+
+<section>
+<h2>18. Vänd en array baklänges</h2>
+<pre><code>
+int[] tal = { 1, 2, 3, 4, 5 };
+
+for (int i = 0; i &lt; tal.Length / 2; i++)
+{
+    int temp = tal[i];
+    tal[i] = tal[tal.Length - 1 - i];
+    tal[tal.Length - 1 - i] = temp;
+}
+
+Console.WriteLine(string.Join(", ", tal));
 </code></pre>
 </section>
 
