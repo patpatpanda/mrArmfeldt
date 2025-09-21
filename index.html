@@ -346,5 +346,114 @@ Console.WriteLine(string.Join(", ", tal));
 </code></pre>
 </section>
 
+<section>
+<h2>19. LINQ: Filtrera och sortera en lista</h2>
+<pre><code>
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+List&lt;int&gt; tal = new List&lt;int&gt; { 7, 2, 15, 3, 9 };
+
+// Hämta alla tal större än 5 och sortera stigande
+var resultat = tal.Where(x =&gt; x &gt; 5).OrderBy(x =&gt; x);
+
+Console.WriteLine(string.Join(", ", resultat));
+// Utskrift: 7, 9, 15
+</code></pre>
+</section>
+
+<section>
+<h2>20. LINQ: Gruppning och räkning</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+string text = "hej hej hopp";
+var grupper = text.Split(' ')
+                  .GroupBy(ord =&gt; ord)
+                  .Select(g =&gt; new { Ord = g.Key, Antal = g.Count() });
+
+foreach (var g in grupper)
+{
+    Console.WriteLine($"{g.Ord}: {g.Antal}");
+}
+// hej: 2
+// hopp: 1
+</code></pre>
+</section>
+
+<section>
+<h2>21. Använd List&lt;T&gt; och Dictionary&lt;TKey,TValue&gt;</h2>
+<pre><code>
+using System;
+using System.Collections.Generic;
+
+var lista = new List&lt;string&gt; { "äpple", "banan", "päron" };
+lista.Add("kiwi");
+Console.WriteLine(string.Join(", ", lista));
+
+var fruktPris = new Dictionary&lt;string, decimal&gt;
+{
+    ["äpple"] = 3.5m,
+    ["banan"] = 2.0m
+};
+fruktPris["päron"] = 4.0m;
+
+foreach (var kvp in fruktPris)
+{
+    Console.WriteLine($"{kvp.Key} kostar {kvp.Value} kr");
+}
+</code></pre>
+</section>
+
+<section>
+<h2>22. Regex: Hitta alla e-postadresser i en text</h2>
+<pre><code>
+using System;
+using System.Text.RegularExpressions;
+
+string text = "Kontakta oss på info@test.com eller support@firma.se";
+Regex regex = new Regex(@"\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b");
+
+MatchCollection matcher = regex.Matches(text);
+
+foreach (Match m in matcher)
+{
+    Console.WriteLine(m.Value);
+}
+// info@test.com
+// support@firma.se
+</code></pre>
+</section>
+
+<section>
+<h2>23. DateTime och TimeSpan</h2>
+<pre><code>
+using System;
+
+DateTime nu = DateTime.Now;
+DateTime framtid = nu.AddDays(30);
+TimeSpan skillnad = framtid - nu;
+
+Console.WriteLine($"Nuvarande datum: {nu}");
+Console.WriteLine($"Om 30 dagar: {framtid}");
+Console.WriteLine($"Antal dagar emellan: {skillnad.Days}");
+</code></pre>
+</section>
+
+<section>
+<h2>24. Läs och skriv filer (File.ReadAllText / File.WriteAllText)</h2>
+<pre><code>
+using System;
+using System.IO;
+
+string filnamn = "exempel.txt";
+File.WriteAllText(filnamn, "Hej från C#!");
+
+string innehåll = File.ReadAllText(filnamn);
+Console.WriteLine(innehåll);
+</code></pre>
+</section>
 </body>
 </html>
