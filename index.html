@@ -631,6 +631,34 @@ static int FirstUniqueChar(string s)
 </code></pre>
 </section>
 
+<section>
+<h2>33. Summera alla heltal i en text (Regex)</h2>
+<pre><code>
+using System;
+using System.Text.RegularExpressions;
+
+static void Main()
+{
+    Console.WriteLine(SumNumbers("Jag har 12 äpplen och 7 päron.")); // förväntat: 19
+    Console.WriteLine(SumNumbers("Ingen siffra här."));              // förväntat: 0
+    Console.WriteLine(SumNumbers("3 små grisar och 14 vargar."));    // förväntat: 17
+}
+
+static int SumNumbers(string text)
+{
+    int summa = 0;
+    var regex = Regex.Matches(text, @"\d+");
+
+    foreach (Match r in regex)
+    {
+        int tal = int.Parse(r.Value);
+        summa += tal;
+    }
+
+    return summa;
+}
+</code></pre>
+</section>
 
 
 </body>
