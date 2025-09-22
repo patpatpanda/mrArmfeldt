@@ -593,6 +593,43 @@ foreach (var kvp in counts)
 </code></pre>
 </section>
 
+<section>
+<h2>32. Hitta första unika tecknet i en sträng</h2>
+<pre><code>
+using System;
+using System.Collections.Generic;
+
+static void Main()
+{
+    Console.WriteLine(FirstUniqueChar("swiss"));  // förväntat: 1
+    Console.WriteLine(FirstUniqueChar("level"));  // förväntat: 2
+    Console.WriteLine(FirstUniqueChar("aabb"));   // förväntat: -1
+}
+
+static int FirstUniqueChar(string s)
+{
+    // 1. Räkna hur många gånger varje tecken förekommer
+    var counts = new Dictionary&lt;char, int&gt;();
+    foreach (char c in s)
+    {
+        if (counts.ContainsKey(c))
+            counts[c]++;
+        else
+            counts[c] = 1;
+    }
+
+    // 2. Gå igenom strängen igen och returnera index för första tecken med frekvens 1
+    for (int i = 0; i &lt; s.Length; i++)
+    {
+        if (counts[s[i]] == 1)
+            return i;
+    }
+
+    // 3. Finns inget unikt tecken → returnera -1
+    return -1;
+}
+</code></pre>
+</section>
 
 
 
