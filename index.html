@@ -567,7 +567,25 @@ Console.WriteLine($"Totalbelopp: {totalPremium}");
 </code></pre>
 </section>
 
+var counts = new Dictionary&lt;string, int&gt;();
 
+string text = "hej hej hej";
+string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+foreach (var w in words)
+{
+    if (counts.ContainsKey(w))
+        counts[w]++;
+    else
+        counts[w] = 1;
+}
+
+foreach (var kvp in counts)
+{
+    Console.WriteLine($"{kvp.Key} förekommer {kvp.Value} gånger");
+}
+</code></pre>
+</section>
 
 
 
