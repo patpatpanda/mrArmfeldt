@@ -696,5 +696,47 @@ class Program
 </section>
 
 
+
+</code></pre>
+</section>
+<section>
+<h2>34. Tre sätt att ta bort eller hoppa över skiljetecken</h2>
+<pre><code>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(IsPerfectNumber(6));   // true
+        Console.WriteLine(IsPerfectNumber(28));  // true
+        Console.WriteLine(IsPerfectNumber(12));  // false
+        Console.WriteLine(IsPerfectNumber(1));   // false
+    }
+
+    static bool IsPerfectNumber(int n)
+    {
+        if (n <= 1) return false;  // 1 är aldrig perfekt
+
+        int sum = 0;
+
+        for (int i = 1; i <= n / 2; i++)
+        {
+            if (n % i == 0)  // kolla om i är en delare av n
+            {
+                sum += i;
+            }
+        }
+
+        return sum == n;
+    }
+}
+
+</code></pre>
+</section>
+
+
+
+
 </body>
 </html>
