@@ -659,6 +659,41 @@ static int SumNumbers(string text)
 }
 </code></pre>
 </section>
+<section>
+<h2>34. Tre sätt att ta bort eller hoppa över skiljetecken</h2>
+<pre><code>
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string text = "Hej, världen! Det här är kul.";
+
+        // 1. Split med lista av skiljetecken
+        string[] words1 = text.Split(
+            new char[] { ' ', '.', ',', '!', '?', ';', ':' },
+            StringSplitOptions.RemoveEmptyEntries);
+        Console.WriteLine("Split: " + string.Join(" | ", words1));
+        // Exempelutskrift: Hej | världen | Det | här | är | kul
+
+        // 2. Regex.Matches - hämta bara ord (bokstäver)
+        string[] words2 = Regex.Matches(text, @"\p{L}+")
+                               .Select(m =&gt; m.Value)
+                               .ToArray();
+        Console.WriteLine("Regex: " + string.Join(" | ", words2));
+        // Exempelutskrift: Hej | världen | Det | här | är | kul
+
+        // 3. char.IsLetter - behåll bara bokstäver som en ren sträng
+        string onlyLetters = new string(text.Where(char.IsLetter).ToArray());
+        Console.WriteLine("IsLetter: " + onlyLetters);
+        // Exempelutskrift: HejvärldenDethärärkul
+    }
+}
+</code></pre>
+</section>
 
 
 </body>
