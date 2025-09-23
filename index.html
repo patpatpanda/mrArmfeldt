@@ -736,6 +736,98 @@ class Program
 </section>
 
 
+<!-- ===== Nya LINQ-exempel ===== -->
+
+<section>
+<h2>35. LINQ: Summera de två största talen</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 3, 7, 1, 9 };
+var result = numbers.OrderByDescending(n =&gt; n).Take(2).Sum();
+Console.WriteLine(result); // 16
+</code></pre>
+</section>
+
+<section>
+<h2>36. LINQ: Hämta de tre minsta talen</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 12, 5, 7, 3, 9 };
+var treMinsta = numbers.OrderBy(n =&gt; n).Take(3).ToArray();
+Console.WriteLine(string.Join(", ", treMinsta)); // 3, 5, 7
+</code></pre>
+</section>
+
+<section>
+<h2>37. LINQ: Hitta alla udda tal</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 2, 3, 4, 5, 6, 7 };
+var udda = numbers.Where(n =&gt; n % 2 != 0).ToList();
+Console.WriteLine(string.Join(", ", udda)); // 3, 5, 7
+</code></pre>
+</section>
+
+<section>
+<h2>38. LINQ: Ta medelvärdet av positiva tal</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { -5, 10, 20, -3, 7 };
+double medel = numbers.Where(n =&gt; n &gt; 0).Average();
+Console.WriteLine(medel); // 12.333...
+</code></pre>
+</section>
+
+<section>
+<h2>39. LINQ: Gruppindela efter jämnt/udda</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 1, 2, 3, 4, 5, 6 };
+var grupper = numbers.GroupBy(n =&gt; n % 2 == 0 ? "jämna" : "udda");
+
+foreach (var g in grupper)
+{
+    Console.WriteLine($"{g.Key}: {string.Join(", ", g)}");
+}
+// jämna: 2, 4, 6
+// udda: 1, 3, 5
+</code></pre>
+</section>
+
+<section>
+<h2>40. LINQ: Räkna hur många tal som är större än 100</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 50, 101, 200, 99, 150 };
+int antalStora = numbers.Count(n =&gt; n &gt; 100);
+Console.WriteLine(antalStora); // 3
+</code></pre>
+</section>
+
+<section>
+<h2>41. LINQ: Sortera och ta bort dubbletter</h2>
+<pre><code>
+using System;
+using System.Linq;
+
+int[] numbers = { 4, 2, 7, 2, 4, 9 };
+var unikaSorterade = numbers.Distinct().OrderBy(n =&gt; n).ToList();
+Console.WriteLine(string.Join(", ", unikaSorterade)); // 2, 4, 7, 9
+</code></pre>
+</section>
+
 
 
 </body>
