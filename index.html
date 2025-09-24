@@ -828,17 +828,10 @@ Console.WriteLine(string.Join(", ", unikaSorterade)); // 2, 4, 7, 9
 </code></pre>
 </section>
 
+
 <section>
 <h2>41. LINQ: Sortera och ta bort dubbletter</h2>
 <pre><code>
-using System;
-using System.Linq;
-
-int[] numbers = { 4, 2, 7, 2, 4, 9 };
-var unikaSorterade = numbers.Distinct().OrderBy(n =&gt; n).ToList();
-Console.WriteLine(string.Join(", ", unikaSorterade)); // 2, 4, 7, 9
-</code></pre>
-</section>
 static void Main()
 {
     Console.WriteLine(SecondLargest(new int[] { 3, 1, 4, 4, 5 }));   // 4
@@ -874,6 +867,7 @@ static int SecondLargest(int[] numbers)
     // Om alla tal är lika → secondMax == max
     return secondMax;
 }
-
+</code></pre>
+</section>
 </body>
 </html>
