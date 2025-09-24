@@ -828,7 +828,52 @@ Console.WriteLine(string.Join(", ", unikaSorterade)); // 2, 4, 7, 9
 </code></pre>
 </section>
 
+<section>
+<h2>41. LINQ: Sortera och ta bort dubbletter</h2>
+<pre><code>
+using System;
+using System.Linq;
 
+int[] numbers = { 4, 2, 7, 2, 4, 9 };
+var unikaSorterade = numbers.Distinct().OrderBy(n =&gt; n).ToList();
+Console.WriteLine(string.Join(", ", unikaSorterade)); // 2, 4, 7, 9
+</code></pre>
+</section>
+static void Main()
+{
+    Console.WriteLine(SecondLargest(new int[] { 3, 1, 4, 4, 5 }));   // 4
+    Console.WriteLine(SecondLargest(new int[] { 10, 10, 10 }));      // 10
+    Console.WriteLine(SecondLargest(new int[] { -5, -1, -3, -1 }));  // -3
+    Console.WriteLine(SecondLargest(new int[] { 7 }));               // 7
+}
+
+static int SecondLargest(int[] numbers)
+{
+    // Om bara ett element → returnera det direkt
+    if (numbers.Length == 1) return numbers[0];
+
+    // Sätt upp max och secondMax baserat på första två värdena
+    int max = Math.Max(numbers[0], numbers[1]);
+    int secondMax = Math.Min(numbers[0], numbers[1]);
+
+    for (int i = 2; i < numbers.Length; i++)
+    {
+        int n = numbers[i];
+
+        if (n > max)
+        {
+            secondMax = max;
+            max = n;
+        }
+        else if (n > secondMax && n != max)
+        {
+            secondMax = n;
+        }
+    }
+
+    // Om alla tal är lika → secondMax == max
+    return secondMax;
+}
 
 </body>
 </html>
