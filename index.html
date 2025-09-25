@@ -869,5 +869,52 @@ static int SecondLargest(int[] numbers)
 }
 </code></pre>
 </section>
+
+
+
+
+<section>
+<h2>43. Räknar antal primtal ifrån en Array </h2>
+<pre><code>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(CountPrimes(new int[] { 2, 3, 4, 5, 6, 7 }));   // 4
+        Console.WriteLine(CountPrimes(new int[] { 10, 15, 21, 22 }));     // 0
+        Console.WriteLine(CountPrimes(new int[] { 11, 13, 17, 19 }));     // 4
+        Console.WriteLine(CountPrimes(new int[] { -3, -2, 0, 1, 2, 3 })); // 2
+    }
+
+    static int CountPrimes(int[] numbers)
+    {
+        int primtal = 0;
+
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            if (IsPrime(numbers[i]))
+            {
+                primtal++;
+            }
+        }
+
+        return primtal;
+    }
+
+    static bool IsPrime(int n)
+    {
+        if (n <= 1) return false;
+        for (int j = 2; j <= Math.Sqrt(n); j++)
+        {
+            if (n % j == 0) return false;
+        }
+        return true;
+    }
+}
+
+    </code></pre>
+</section>
 </body>
 </html>
