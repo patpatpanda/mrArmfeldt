@@ -916,5 +916,45 @@ class Program
 
     </code></pre>
 </section>
+
+<section>
+<h2>44. Daysbetween</h2>
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(DaysBetween(
+            new DateTime(2025, 1, 1),
+            new DateTime(2025, 1, 10)
+        )); // 9
+
+        Console.WriteLine(DaysBetween(
+            new DateTime(2024, 2, 27),
+            new DateTime(2024, 3, 1)
+        )); // 3
+
+        Console.WriteLine(DaysBetween(
+            new DateTime(2025, 9, 30),
+            new DateTime(2025, 9, 26)
+        )); // 4
+    }
+
+    static int DaysBetween(DateTime start, DateTime end)
+    {
+        // 1. Ta bort tid (timme/minut/sekund) för båda datumen
+        start = start.Date;
+        end = end.Date;
+
+        // 2. Beräkna skillnaden som en TimeSpan
+        TimeSpan diff = end - start;
+
+        // 3. Returnera absolutvärdet av antalet dagar
+        return Math.Abs(diff.Days);
+    }
+}
+
+<pre><code>
 </body>
 </html>
